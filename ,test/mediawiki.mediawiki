@@ -1,0 +1,53 @@
+mediawiki
+
+[link markdown format](./index.md)
+[[link mediawiki format||WikiName]]
+
+horizontal line
+---
+
+=== level3 ===
+
+<nowiki>no markup<hello world></nowiki>
+
+* list
+** 2level
+*:- list in level
+*:- foobar
+** 2leve 2nd
+
+# number list
+## two
+### three
+
+; definition list
+: is not supported on GH pages
+
+: indent
+:: is not supported on GH pages
+
+DL is not supported
+
+ formated line '''foobar'''
+
+ <nowiki><nowiki> with pre-formatted space continues blocks
+
+fn foo() {
+  println('hello world')
+}</nowiki>
+
+html tag
+<code><pre>
+fn foo() {
+  println
+}
+</pre></code>
+
+comment<!-- heopjfpweojfwpgj -->
+
+== math ==
+
+''f<sub>i</sub> = \sum_1^i i''
+''f_i = \sum_1^i i''
+
+
