@@ -46,8 +46,8 @@ fn foo() {
 comment<!-- heopjfpweojfwpgj -->
 
 == math ==
+html の sub とかで頑張る。<nowiki>''</nowiki> でイタリック体にする。
 
-''f<sub>i</sub> = \sum_1^i i''
-''f_i = \sum_1^i i''
+''f<sub>i</sub> = &Sigma;<sub>1</sub><sup>i<sup> i''
 
 
