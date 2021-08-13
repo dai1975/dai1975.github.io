@@ -1,0 +1,28 @@
+site_name: "dai's blog"
+
+docs_dir: 'docs'
+
+theme:
+  #name: bootstrap
+  name: material
+  language: ja
+  palette:
+    primary: orange
+
+
+markdown_extensions:
+  - markdown_katex:
+      no_inline_svg: True
+      insert_fonts_css: True
+      macro-file: macros.tex
+  - pymdownx.magiclink:
+  - codehilite:
+      linenums: true
+      use_pygments: true
+
+
+plugins:
+  - search:
+      indexing: 'full'
+
+

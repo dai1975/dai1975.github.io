@@ -1,0 +1,170 @@
+---
+title: P2SH まとめ
+date: "2016-12-24T00:00:00.000+09:00"
+#template: "post"
+draft: false
+# slug: "slug"
+category: "Tech"
+tags:
+  - "Tech"
+  - "Bitcoin"
+description: P2SH まとめ
+#socialImage: "/media/42-line-bible.jpg"
+---
+# はじめに
+[仮想通貨・ブロックチェーン Advent Calendar 2016](http://qiita.com/advent-calendar/2016/blockchain) が空いていたので、最近調べた P2SH についてのまとめを書いておく。
+
+# [P2SH](https://en.bitcoin.it/wiki/Pay_to_script_hash)
+Pay to Script Hash の略。
+Bitcoin の支払いスクリプトの一種。
+
+## scriptPubKey
+P2SH の scriptPubKey は次のようになる。
+
+```
+OP_HASH160 [20-byte-hash-value] OP_EQUAL
+```
+
+この判定は厳しく、OP_EQUAL の後に任意のコードを置いたり、20byte データを積むのに 0x14 以外のオペコードを使ったりしたら P2SH とは解釈されない。
+
+bitcoin-core 0.13.1 のソースコードでは、script/script.cpp に [IsPayToScriptHash](https://github.com/bitcoin/bitcoin/blob/v0.13.1/src/script/script.cpp#L204) という関数が定義されている。
+コードを読めば厳密にチェックされているのが分かるかと。
+
+```cpp:script/script.cpp
+bool CScript::IsPayToScriptHash() const
+{
+    // Extra-fast test for pay-to-script-hash CScripts:
+    return (this->size() == 23 &&
+            (*this)[0] == OP_HASH160 &&
+            (*this)[1] == 0x14 &&
+            (*this)[22] == OP_EQUAL);
+}
+```
+0x14 は、次の 20byte をスタックに積む命令。
+
+## scriptSig
+P2SH に対する scriptSig にも次の制約がかかる:
+- PUSH系のオペレータのみで構成される
+
+こちらの実装は script/script.cpp の [IsPushOnly](https://github.com/bitcoin/bitcoin/blob/v0.13.1/src/script/script.cpp#L239) にある
+
+```
+bool CScript::IsPushOnly(const_iterator pc) const
+{
+    while (pc < end())
+    {
+        opcodetype opcode;
+        if (!GetOp(pc, opcode))
+            return false;
+        // Note that IsPushOnly() *does* consider OP_RESERVED to be a
+        // push-type opcode, however execution of OP_RESERVED fails, so
+        // it's not relevant to P2SH/BIP62 as the scriptSig would fail prior to
+        // the P2SH special validation code being executed.
+        if (opcode > OP_16)
+            return false;
+    }
+    return true;
+}
+```
+引数 pc はスクリプトの先頭が与えられると思いねぇ(詳細は [VerifyScript 関数](https://github.com/bitcoin/bitcoin/blob/v0.13.1/src/script/interpreter.cpp#L1460))。
+
+OP_16 までということは、https://en.bitcoin.it/wiki/Script によると、
+
+ - OP_0
+ - OP_pushx
+ - OP_PUSHDATAx
+ - OP_1_NEGATIVE, OP_1 - OP_16
+
+が許されていることになる。
+
+## script の実行
+scriptPubKey が P2SH の場合、スクリプトの実行は次のような特殊な手順になる。
+
+1. scriptSig を実行
+2. スタックの状態を保存
+3. scriptPubKey を実行
+4. 2で保存したスタックに戻す
+5. スタックの頂上を取り出す
+6. 5で取り出したデータをスクリプトとみなして実行する
+
+1,3 は通常のスクリプト実行と同じ。
+2 で保存したスタックに対して、4-6 っでその最上段の値にあるスクリプトを実行するようになっている。
+
+scriptSig の実行結果のスタックには最上段にデータがある、つまり少なくとも一つのデータがあることが要請されている。
+さらに、この最上段のデータはスクリプトであり、後で実行することになる。このスクリプトを redeem script と言う。
+
+### scriptPubKey
+scriptSig の結果、スタック最上段に redeem script がある状態で scriptPubKey の実行に移る。
+scriptPubKey は、先に示したように、
+
+```
+OP_HASH160 [20-byte-hash-value] OP_EQUAL
+```
+
+である。
+redeem script の hash160(= ripemd160(sha256(redeem_script)) を取り、それが [20-byte-hash-value] と一致していることを判定している。
+
+整理すると、
+
+a. scriptPubKey には hash値が入っている
+b. scriptSig には、hash 値が a の値と一致する redeem script が入る
+
+通常(P2PKH)の scriptPubKey と異なり、P2SH の scriptPubKey には公開鍵は含まれていないが、redeem script のハッシュ値が含められている。実質的に、特定の redeem script が入ることを強制しているわけだ。
+redeem script に公開鍵が入っていれば、utxo 使用のためのセキュリティは P2PKH と同様に確保されることになる。
+
+### redeem script
+redeem script は普通に実行すればよい。
+ただし redeem script は実質的に scriptPubKey で決まっているので、transaction 生成時に分かるような情報、例えば署名を含めることはできない。そういうのは scriptSig に入れる。
+
+たとえば、単純な checksig をする redeem script と scriptSig は次のようにすればよい:
+
+```
+scriptSig: [sign] [redeem script]
+redeemScr: [pubkey] CHECKSIG
+```
+// 実際に使うのなら、P2PKH のように公開鍵のハッシュ確認を入れた方がよい
+
+redeem script を実行する時のスタックは、signature が一つあるだけ。
+その後 redeem script の実行で、pubkey を積んで、CHECKSIG を実行する。
+CHECKSIG 実行時には、スタックは下から sign,pubkey と入っているので、正しく検証できる。
+
+なお、上の例のように pubkey を redeem script に置いて制限することが重要。scriptSig の最後に置いても動作するが、それだと署名検証に用いる公開鍵を任意に指定できるスクリプトになってしまう。
+
+
+2-of-3 multisig の場合は次のようになる:
+
+```
+scriptSig: OP_0 [sign1] [sign2] [redeem script]
+redeemScr: OP_2 [pubkey1] [pubkey2] [pubkey3] OP_3 CHECKMULTISIG
+```
+
+CHECKMULTISIG 実行時のスタックは下から、
+
+```
+  <0> <sign1> <sign2> <2> <pubkey1> <pubkey2> <pubkey3> <3>
+```
+
+となっている。
+これは正しい CHECKMULTISIG の並びになっている。
+// 最初の 0 は CHECKMULTISIG のバグにより必要なダミーの値
+
+P2PKH で multisig を行うと、公開鍵がすべて scriptPubKey に入るので長くなってしまう。マルチシグ用のアドレスもそれに伴って長くなる。
+
+P2SH の場合、redeem script の長さに関わらず、scriptPubKey の長さは 23byte で固定になる。
+
+
+## P2SH アドレス
+[BIP13](https://github.com/bitcoin/bips/blob/master/bip-0013.mediawiki)
+
+P2SH のアドレスは、通常のアドレスと同様に base58check で作成する。
+ただし以下の違いがある:
+
+- P2PKH アドレスでは公開鍵の hash160 に対して base58check をかけるが、P2SH アドレスでは redeem script の hash160 を使う。  
+(scriptPubKey の 20byte hash と同じ値)
+- [version byte](https://en.bitcoin.it/wiki/List_of_address_prefixes) は、main-net では 5, testnet では 196.  
+base58 後の先頭文字は、それぞれ '3' と '2'
+
+## トランザクションの署名対象
+トランザクションの署名を作る際には、対応する UTXO の scriptPubKey で scriptSig を置き換えるが、
+P2SH の場合は redeem script で置き換える。
+
