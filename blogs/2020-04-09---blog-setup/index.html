@@ -1,0 +1,1083 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Gatsby + Netlify + Markdown のブログサイト構築">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.4">
+    
+    
+      
+        <title>ブログ構築 - dai's blog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.f7f47774.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#ffa724">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="orange" data-md-color-accent="">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href="../.." title="dai&#39;s blog" class="md-header__button md-logo" aria-label="dai's blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            dai's blog
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ブログ構築
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="クリア" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="dai&#39;s blog" class="md-nav__button md-logo" aria-label="dai's blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    dai's blog
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        dai's blog
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      <label class="md-nav__link" for="__nav_2">
+        Blogs
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Blogs" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Blogs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          ブログ構築
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        ブログ構築
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    動機
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    開発環境構築
+  </a>
+  
+    <nav class="md-nav" aria-label="開発環境構築">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-github-repository" class="md-nav__link">
+    1. github repository
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-nodejs" class="md-nav__link">
+    2. Node.js
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-gastby" class="md-nav__link">
+    3. Gastby
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Gastby">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gatsby-cli" class="md-nav__link">
+    gatsby-cli
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    ボイラープレート
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dev-server" class="md-nav__link">
+    dev server
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#production" class="md-nav__link">
+    production
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    開発
+  </a>
+  
+    <nav class="md-nav" aria-label="開発">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configjs" class="md-nav__link">
+    config.js
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contentposts" class="md-nav__link">
+    content/posts/
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contentpage" class="md-nav__link">
+    content/page/
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    デプロイ
+  </a>
+  
+    <nav class="md-nav" aria-label="デプロイ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#netlify" class="md-nav__link">
+    Netlify
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    数式
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2020-04-11---unreal_engine/" class="md-nav__link">
+        UE4 C++ (VSCode) セットアップ
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2021-08-13---upgrade-gatsby/" class="md-nav__link">
+        gatsby から mkdocs へ移行
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        Topics
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Topics" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Topics
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" >
+      
+      <label class="md-nav__link" for="__nav_3_1">
+        Bitcoin
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Bitcoin" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Bitcoin
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../topics/Bitcoin/bech32/" class="md-nav__link">
+        Bech32 チェックサムのアルゴリズム
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../topics/Bitcoin/bip32/" class="md-nav__link">
+        BIP32 鍵派生アルゴリズム
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../topics/Bitcoin/gg18/" class="md-nav__link">
+        Fast Multiparty Threshold ECDSA with Fast Trustless Setup
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../topics/Bitcoin/p2sh/" class="md-nav__link">
+        P2SH まとめ
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../topics/Bitcoin/uasf/" class="md-nav__link">
+        Bitcoin の segwit fork のまとめ
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      <label class="md-nav__link" for="__nav_3_2">
+        Kubernetes
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Kubernetes" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Kubernetes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../topics/Kubernetes/k8s-template/" class="md-nav__link">
+        Kubernetes マニフェストジェネレータ
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../topics/Kubernetes/microk8s-for-programmer/" class="md-nav__link">
+        サーバープログラマのための microk8s のすすめ
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3" type="checkbox" id="__nav_3_3" >
+      
+      <label class="md-nav__link" for="__nav_3_3">
+        Life
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Life" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          Life
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../topics/Life/remote-uk/" class="md-nav__link">
+        海外企業(日本法人無し)リモート勤務する場合の税金とか社保とか
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_4" type="checkbox" id="__nav_3_4" >
+      
+      <label class="md-nav__link" for="__nav_3_4">
+        Misc
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Misc" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_4">
+          <span class="md-nav__icon md-icon"></span>
+          Misc
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../topics/misc/rust-netlibs/" class="md-nav__link">
+        Rust のネットワークライブラリ/フレームワーク
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../topics/misc/stumpwm/" class="md-nav__link">
+        window manager を Stumpwm へ移行
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../topics/misc/swagger-codegen-typescript-koa2/" class="md-nav__link">
+        swagger-codegen-typescript-koa2
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    動機
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    開発環境構築
+  </a>
+  
+    <nav class="md-nav" aria-label="開発環境構築">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-github-repository" class="md-nav__link">
+    1. github repository
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-nodejs" class="md-nav__link">
+    2. Node.js
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-gastby" class="md-nav__link">
+    3. Gastby
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Gastby">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gatsby-cli" class="md-nav__link">
+    gatsby-cli
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    ボイラープレート
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dev-server" class="md-nav__link">
+    dev server
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#production" class="md-nav__link">
+    production
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    開発
+  </a>
+  
+    <nav class="md-nav" aria-label="開発">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configjs" class="md-nav__link">
+    config.js
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contentposts" class="md-nav__link">
+    content/posts/
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contentpage" class="md-nav__link">
+    content/page/
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    デプロイ
+  </a>
+  
+    <nav class="md-nav" aria-label="デプロイ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#netlify" class="md-nav__link">
+    Netlify
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    数式
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <p>このブログの構築はじめ。</p>
+<h2 id="_1">動機</h2>
+<p>Qiita で書いてたんだけども、最近の行動は合わなくなってきた。</p>
+<ul>
+<li><a href="https://www.itmedia.co.jp/news/articles/1912/26/news121.html">https://www.itmedia.co.jp/news/articles/1912/26/news121.html</a>
+   テックコミュニティはブラックボックスには容赦無い批判を浴びせるものだが、
+   そういう面倒臭い側面に真摯に向き合わずに上澄みだけ享受しようという感じを受けた。</li>
+<li><a href="https://www.itmedia.co.jp/news/articles/2003/26/news087.html">https://www.itmedia.co.jp/news/articles/2003/26/news087.html</a>
+   個人情報ビジネス</li>
+</ul>
+<p>というわけで引っ越す。</p>
+<p>Markdown で書いているので Markdown が使いたい。
+数式も。
+という条件で漁る。</p>
+<p>当初は GitHub Pages を試みたが、数式を使うのにひと手間かかるようだ。
+サイトジェネレータ走らせるので、デプロイ前に確認するにはローカルに環境整えないとならない。
+といってプラグインなどは制限されていて、自由にカスタマイズできるわけでもない。</p>
+<p>お任せは諦めて、サイトジェネレータで静的ページ作ってデプロイするやり方にする。
+<a href="https://gatsbyjs.org">Gatsby</a> というのが、SPA ジェネレータ的なものらしい。面白そうである。
+ホスティングは GitOps が簡単にできるらしい <a href="https://netlify.com">Netlify</a> を使ってみる。</p>
+<h1 id="_2">開発環境構築</h1>
+<h2 id="1-github-repository">1. github repository</h2>
+<p>リポジトル作っとく。</p>
+<p>今回は gatsby-cli をローカルに入れる。
+gatsby-cli を入れた node リポジトリの下に、gatsby 用の node リポジトリを作る。gatsby 用のところが git リポジトリ。</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>$ mkdir workdir<span class="p">;</span> <span class="nb">cd</span> workdir
+$ git clone git@github.com:dai1975/blog
+</code></pre></div>
+</td></tr></table>
+<h2 id="2-nodejs">2. Node.js</h2>
+<p>Node.js を入れる。バージョンは最近のなら問題なさげで、最新の 13.8.0 にする。
+うちは anyenv 使ってるので、</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>$ nodenv install <span class="m">13</span>.8.0
+$ nodenv <span class="nb">local</span> <span class="m">13</span>.8.0
+
+$ node --version
+v13.8.0
+
+$ npm --version
+<span class="m">6</span>.13.6
+
+$ npm init
+package name: <span class="o">(</span>workdir<span class="o">)</span>
+version: <span class="o">(</span><span class="m">1</span>.0.0<span class="o">)</span> 
+description: 
+entry point: <span class="o">(</span>index.js<span class="o">)</span> 
+<span class="nb">test</span> command: 
+git repository: 
+keywords: 
+author: 
+license: <span class="o">(</span>ISC<span class="o">)</span> 
+About to write to /home/dai/d/workdir/package.json:
+Is this OK? <span class="o">(</span>yes<span class="o">)</span> 
+</code></pre></div>
+</td></tr></table>
+<h2 id="3-gastby">3. Gastby</h2>
+<h3 id="gatsby-cli">gatsby-cli</h3>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>$ npm install gatsby-cli
+</code></pre></div>
+</td></tr></table>
+<p><code>-g</code> でグローバルに入れれば gatsby コマンドが使える。
+ローカルに入れたので、<code>npx gatsby</code> になる。以後 <code>gatsby</code> とのみ書くので注意。</p>
+<h3 id="_3">ボイラープレート</h3>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>$ gatsby new &lt;site-name&gt; <span class="o">[</span>starter url<span class="o">]</span>
+</code></pre></div>
+</td></tr></table>
+<p>と打つ。
+スターターは <a href="https://www.gatsbyjs.org/starters/?v=2">https://www.gatsbyjs.org/starters/?v=2</a> に色々ある。</p>
+<p>依存プラグインでも検索できる。
+数式使えそうな gatsby-remark-katex ってのがあったから、これ依存してるやつで。</p>
+<p><a href="https://www.gatsbyjs.org/starters/alxshelepenok/gatsby-starter-lumen/">https://www.gatsbyjs.org/starters/alxshelepenok/gatsby-starter-lumen/</a> がよいな。
+starter URL は <a href="https://github.com/alxshelepenok/gatsby-starter-lumen">https://github.com/alxshelepenok/gatsby-starter-lumen</a></p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>$ gatsby new blog https://github.com/alxshelepenok/gatsby-starter-lumen
+</code></pre></div>
+</td></tr></table>
+<h3 id="dev-server">dev server</h3>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>$ gatsby develop
+</code></pre></div>
+</td></tr></table>
+<p>でローカル 8000 番にサービスする。</p>
+<h3 id="production">production</h3>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>$ gatsby build
+</code></pre></div>
+</td></tr></table>
+<p>で public/ に出力される。develop と違いファイルの最適化などされている。</p>
+<p>public/ の確認したければ、<code>gatsby serve</code></p>
+<h2 id="_4">開発</h2>
+<h3 id="configjs">config.js</h3>
+<p>URL とかタイトルとかはここに書くようだ。
+適当に編集して保存。</p>
+<p>静的ファイルは static/ 以下に置き、public/ にコピーされるようである。
+photo.jpg の名前を変えて /static/photo.jpg を消したらエラーになった。
+決め打ちのファイル名などはあまり変更しない方がよさそうだ。</p>
+<h3 id="contentposts">content/posts/</h3>
+<p>ブログ記事はここに置くようだ。
+先頭部分に yaml で設定を書ける。
+設定の詳細はまた調べる。</p>
+<p>デフォルトでいくつかファイルがあるので参考にして消す。
+ファイル名が YYYY-DD-MM---title.md にいなってるけど命名規約なんだろうか。</p>
+<h3 id="contentpage">content/page/</h3>
+<p>時系列でない記事の置き場所かな。</p>
+<h2 id="_5">デプロイ</h2>
+<h3 id="netlify">Netlify</h3>
+<p>Netlify のサイトで "new site from git" を選択。</p>
+<ol>
+<li>GitHub を選択。リダイレクトされるのでアクセスを許可。</li>
+<li>リポジトリ選択。まず GitHub へ飛んでリポジトリへのアクセス許可。続いてリポジトリを選ぶ。</li>
+<li>ブランチを選択。Build command に "gatsby build", Publish directory に "public" を入力。
+    gatsby のドキュメントでは "npm run build" になっている。gatsby build は production 用で最適化されるらしい。
+    gatsby のボイラープレートに netlify.toml があり、こっちが使われるかもしれない</li>
+</ol>
+<p>あとは master に push すれば自動的にデプロイされる。</p>
+<h1 id="_6">数式</h1>
+<p>肝心かなめの数式。</p>
+<p>インライン数式は <code>$...$</code> で括る(Qiita と同じ)。</p>
+<p>複数行数式は Qiita では <code>```math...```</code> で括っていたが、KaTeX では <code>$$..$$</code> で括る。</p>
+<p>複数行の桁揃えは `\begin{aligned}..\end{aligned}</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="フッター">
+      
+        
+        <a href="../.." class="md-footer__link md-footer__link--prev" aria-label="前: dai&#39;s blog" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                前
+              </span>
+              dai's blog
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../2020-04-11---unreal_engine/" class="md-footer__link md-footer__link--next" aria-label="次: UE4 C++ (VSCode) セットアップ" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                次
+              </span>
+              UE4 C++ (VSCode) セットアップ
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\u3000\u3001\u3002\uff0c\uff0e]+", "search.placeholder": "\u691c\u7d22", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.709b4209.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.febc23d1.min.js"></script>
+      
+    
+  </body>
+</html>

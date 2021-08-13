@@ -1,0 +1,846 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="P2SH まとめ">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.4">
+    
+    
+      
+        <title>P2SH まとめ - dai's blog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.f7f47774.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#ffa724">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="orange" data-md-color-accent="">
+  
+    
+    <script>function __prefix(e){return new URL("../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href="../../.." title="dai&#39;s blog" class="md-header__button md-logo" aria-label="dai's blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            dai's blog
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              P2SH まとめ
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="クリア" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="dai&#39;s blog" class="md-nav__button md-logo" aria-label="dai's blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    dai's blog
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        dai's blog
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      <label class="md-nav__link" for="__nav_2">
+        Blogs
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Blogs" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Blogs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blogs/2020-04-09---blog-setup/" class="md-nav__link">
+        ブログ構築
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blogs/2020-04-11---unreal_engine/" class="md-nav__link">
+        UE4 C++ (VSCode) セットアップ
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blogs/2021-08-13---upgrade-gatsby/" class="md-nav__link">
+        gatsby から mkdocs へ移行
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      <label class="md-nav__link" for="__nav_3">
+        Topics
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Topics" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Topics
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" checked>
+      
+      <label class="md-nav__link" for="__nav_3_1">
+        Bitcoin
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Bitcoin" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Bitcoin
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bech32/" class="md-nav__link">
+        Bech32 チェックサムのアルゴリズム
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bip32/" class="md-nav__link">
+        BIP32 鍵派生アルゴリズム
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gg18/" class="md-nav__link">
+        Fast Multiparty Threshold ECDSA with Fast Trustless Setup
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        P2SH まとめ
+      </a>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uasf/" class="md-nav__link">
+        Bitcoin の segwit fork のまとめ
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      <label class="md-nav__link" for="__nav_3_2">
+        Kubernetes
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Kubernetes" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Kubernetes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Kubernetes/k8s-template/" class="md-nav__link">
+        Kubernetes マニフェストジェネレータ
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Kubernetes/microk8s-for-programmer/" class="md-nav__link">
+        サーバープログラマのための microk8s のすすめ
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3" type="checkbox" id="__nav_3_3" >
+      
+      <label class="md-nav__link" for="__nav_3_3">
+        Life
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Life" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          Life
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Life/remote-uk/" class="md-nav__link">
+        海外企業(日本法人無し)リモート勤務する場合の税金とか社保とか
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_4" type="checkbox" id="__nav_3_4" >
+      
+      <label class="md-nav__link" for="__nav_3_4">
+        Misc
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Misc" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_4">
+          <span class="md-nav__icon md-icon"></span>
+          Misc
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/rust-netlibs/" class="md-nav__link">
+        Rust のネットワークライブラリ/フレームワーク
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/stumpwm/" class="md-nav__link">
+        window manager を Stumpwm へ移行
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/swagger-codegen-typescript-koa2/" class="md-nav__link">
+        swagger-codegen-typescript-koa2
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="_1">はじめに</h1>
+<p><a href="http://qiita.com/advent-calendar/2016/blockchain">仮想通貨・ブロックチェーン Advent Calendar 2016</a> が空いていたので、最近調べた P2SH についてのまとめを書いておく。</p>
+<h1 id="p2sh"><a href="https://en.bitcoin.it/wiki/Pay_to_script_hash">P2SH</a></h1>
+<p>Pay to Script Hash の略。
+Bitcoin の支払いスクリプトの一種。</p>
+<h2 id="scriptpubkey">scriptPubKey</h2>
+<p>P2SH の scriptPubKey は次のようになる。</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>OP_HASH160 [20-byte-hash-value] OP_EQUAL
+</code></pre></div>
+</td></tr></table>
+<p>この判定は厳しく、OP_EQUAL の後に任意のコードを置いたり、20byte データを積むのに 0x14 以外のオペコードを使ったりしたら P2SH とは解釈されない。</p>
+<p>bitcoin-core 0.13.1 のソースコードでは、script/script.cpp に <a href="https://github.com/bitcoin/bitcoin/blob/v0.13.1/src/script/script.cpp#L204">IsPayToScriptHash</a> という関数が定義されている。
+コードを読めば厳密にチェックされているのが分かるかと。</p>
+<p>```cpp:script/script.cpp
+bool CScript::IsPayToScriptHash() const
+{
+    // Extra-fast test for pay-to-script-hash CScripts:
+    return (this-&gt;size() == 23 &amp;&amp;
+            (<em>this)[0] == OP_HASH160 &amp;&amp;
+            (</em>this)[1] == 0x14 &amp;&amp;
+            (*this)[22] == OP_EQUAL);
+}</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="mh">0x14</span><span class="w"> </span><span class="n">は</span><span class="err">、</span><span class="n">次の</span><span class="w"> </span><span class="mi">20</span><span class="n">byte</span><span class="w"> </span><span class="n">をスタックに積む命令</span><span class="err">。</span><span class="w"></span>
+
+<span class="err">##</span><span class="w"> </span><span class="n">scriptSig</span><span class="w"></span>
+<span class="n">P2SH</span><span class="w"> </span><span class="n">に対する</span><span class="w"> </span><span class="n">scriptSig</span><span class="w"> </span><span class="nl">にも次の制約がかかる</span><span class="p">:</span><span class="w"></span>
+<span class="o">-</span><span class="w"> </span><span class="n">PUSH系のオペレータのみで構成される</span><span class="w"></span>
+
+<span class="n">こちらの実装は</span><span class="w"> </span><span class="n">script</span><span class="o">/</span><span class="n">script</span><span class="p">.</span><span class="n">cpp</span><span class="w"> </span><span class="n">の</span><span class="w"> </span><span class="o">[</span><span class="n">IsPushOnly</span><span class="o">]</span><span class="p">(</span><span class="nl">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">bitcoin</span><span class="o">/</span><span class="n">bitcoin</span><span class="o">/</span><span class="k">blob</span><span class="o">/</span><span class="n">v0</span><span class="mf">.13.1</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">script</span><span class="o">/</span><span class="n">script</span><span class="p">.</span><span class="n">cpp#L239</span><span class="p">)</span><span class="w"> </span><span class="n">にある</span><span class="w"></span>
+</code></pre></div>
+</td></tr></table>
+<p>bool CScript::IsPushOnly(const_iterator pc) const
+{
+    while (pc &lt; end())
+    {
+        opcodetype opcode;
+        if (!GetOp(pc, opcode))
+            return false;
+        // Note that IsPushOnly() <em>does</em> consider OP_RESERVED to be a
+        // push-type opcode, however execution of OP_RESERVED fails, so
+        // it's not relevant to P2SH/BIP62 as the scriptSig would fail prior to
+        // the P2SH special validation code being executed.
+        if (opcode &gt; OP_16)
+            return false;
+    }
+    return true;
+}</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>引数 pc はスクリプトの先頭が与えられると思いねぇ(詳細は [VerifyScript 関数](https://github.com/bitcoin/bitcoin/blob/v0.13.1/src/script/interpreter.cpp#L1460))。
+
+OP_16 までということは、https://en.bitcoin.it/wiki/Script によると、
+
+ - OP_0
+ - OP_pushx
+ - OP_PUSHDATAx
+ - OP_1_NEGATIVE, OP_1 - OP_16
+
+が許されていることになる。
+
+## script の実行
+scriptPubKey が P2SH の場合、スクリプトの実行は次のような特殊な手順になる。
+
+1. scriptSig を実行
+2. スタックの状態を保存
+3. scriptPubKey を実行
+4. 2で保存したスタックに戻す
+5. スタックの頂上を取り出す
+6. 5で取り出したデータをスクリプトとみなして実行する
+
+1,3 は通常のスクリプト実行と同じ。
+2 で保存したスタックに対して、4-6 っでその最上段の値にあるスクリプトを実行するようになっている。
+
+scriptSig の実行結果のスタックには最上段にデータがある、つまり少なくとも一つのデータがあることが要請されている。
+さらに、この最上段のデータはスクリプトであり、後で実行することになる。このスクリプトを redeem script と言う。
+
+### scriptPubKey
+scriptSig の結果、スタック最上段に redeem script がある状態で scriptPubKey の実行に移る。
+scriptPubKey は、先に示したように、
+</code></pre></div>
+</td></tr></table>
+<p>OP_HASH160 [20-byte-hash-value] OP_EQUAL</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>である。
+redeem script の hash160(= ripemd160(sha256(redeem_script)) を取り、それが [20-byte-hash-value] と一致していることを判定している。
+
+整理すると、
+
+a. scriptPubKey には hash値が入っている
+b. scriptSig には、hash 値が a の値と一致する redeem script が入る
+
+通常(P2PKH)の scriptPubKey と異なり、P2SH の scriptPubKey には公開鍵は含まれていないが、redeem script のハッシュ値が含められている。実質的に、特定の redeem script が入ることを強制しているわけだ。
+redeem script に公開鍵が入っていれば、utxo 使用のためのセキュリティは P2PKH と同様に確保されることになる。
+
+### redeem script
+redeem script は普通に実行すればよい。
+ただし redeem script は実質的に scriptPubKey で決まっているので、transaction 生成時に分かるような情報、例えば署名を含めることはできない。そういうのは scriptSig に入れる。
+
+たとえば、単純な checksig をする redeem script と scriptSig は次のようにすればよい:
+</code></pre></div>
+</td></tr></table>
+<p>scriptSig: [sign] [redeem script]
+redeemScr: [pubkey] CHECKSIG</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>// 実際に使うのなら、P2PKH のように公開鍵のハッシュ確認を入れた方がよい
+
+redeem script を実行する時のスタックは、signature が一つあるだけ。
+その後 redeem script の実行で、pubkey を積んで、CHECKSIG を実行する。
+CHECKSIG 実行時には、スタックは下から sign,pubkey と入っているので、正しく検証できる。
+
+なお、上の例のように pubkey を redeem script に置いて制限することが重要。scriptSig の最後に置いても動作するが、それだと署名検証に用いる公開鍵を任意に指定できるスクリプトになってしまう。
+
+
+2-of-3 multisig の場合は次のようになる:
+</code></pre></div>
+</td></tr></table>
+<p>scriptSig: OP_0 [sign1] [sign2] [redeem script]
+redeemScr: OP_2 [pubkey1] [pubkey2] [pubkey3] OP_3 CHECKMULTISIG</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>CHECKMULTISIG 実行時のスタックは下から、
+</code></pre></div>
+</td></tr></table>
+<p>&lt;0&gt; <sign1> <sign2> &lt;2&gt; <pubkey1> <pubkey2> <pubkey3> &lt;3&gt;
+```</p>
+<p>となっている。
+これは正しい CHECKMULTISIG の並びになっている。
+// 最初の 0 は CHECKMULTISIG のバグにより必要なダミーの値</p>
+<p>P2PKH で multisig を行うと、公開鍵がすべて scriptPubKey に入るので長くなってしまう。マルチシグ用のアドレスもそれに伴って長くなる。</p>
+<p>P2SH の場合、redeem script の長さに関わらず、scriptPubKey の長さは 23byte で固定になる。</p>
+<h2 id="p2sh_1">P2SH アドレス</h2>
+<p><a href="https://github.com/bitcoin/bips/blob/master/bip-0013.mediawiki">BIP13</a></p>
+<p>P2SH のアドレスは、通常のアドレスと同様に base58check で作成する。
+ただし以下の違いがある:</p>
+<ul>
+<li>P2PKH アドレスでは公開鍵の hash160 に対して base58check をかけるが、P2SH アドレスでは redeem script の hash160 を使う。<br />
+(scriptPubKey の 20byte hash と同じ値)</li>
+<li><a href="https://en.bitcoin.it/wiki/List_of_address_prefixes">version byte</a> は、main-net では 5, testnet では 196.<br />
+base58 後の先頭文字は、それぞれ '3' と '2'</li>
+</ul>
+<h2 id="_2">トランザクションの署名対象</h2>
+<p>トランザクションの署名を作る際には、対応する UTXO の scriptPubKey で scriptSig を置き換えるが、
+P2SH の場合は redeem script で置き換える。</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="フッター">
+      
+        
+        <a href="../gg18/" class="md-footer__link md-footer__link--prev" aria-label="前: Fast Multiparty Threshold ECDSA with Fast Trustless Setup" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                前
+              </span>
+              Fast Multiparty Threshold ECDSA with Fast Trustless Setup
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../uasf/" class="md-footer__link md-footer__link--next" aria-label="次: Bitcoin の segwit fork のまとめ" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                次
+              </span>
+              Bitcoin の segwit fork のまとめ
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "translations": {"clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\u3000\u3001\u3002\uff0c\uff0e]+", "search.placeholder": "\u691c\u7d22", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.709b4209.min.js", "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.febc23d1.min.js"></script>
+      
+    
+  </body>
+</html>

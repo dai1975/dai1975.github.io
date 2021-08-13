@@ -1,0 +1,928 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Unreal Engine 4 の C++ 開発環境のセットアップ">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.4">
+    
+    
+      
+        <title>UE4 C++ (VSCode) セットアップ - dai's blog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.f7f47774.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#ffa724">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="orange" data-md-color-accent="">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href="../.." title="dai&#39;s blog" class="md-header__button md-logo" aria-label="dai's blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            dai's blog
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              UE4 C++ (VSCode) セットアップ
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="クリア" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="dai&#39;s blog" class="md-nav__button md-logo" aria-label="dai's blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    dai's blog
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        dai's blog
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      <label class="md-nav__link" for="__nav_2">
+        Blogs
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Blogs" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Blogs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2020-04-09---blog-setup/" class="md-nav__link">
+        ブログ構築
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        UE4 C++ (VSCode) セットアップ
+      </a>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2021-08-13---upgrade-gatsby/" class="md-nav__link">
+        gatsby から mkdocs へ移行
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        Topics
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Topics" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Topics
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" >
+      
+      <label class="md-nav__link" for="__nav_3_1">
+        Bitcoin
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Bitcoin" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Bitcoin
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../topics/Bitcoin/bech32/" class="md-nav__link">
+        Bech32 チェックサムのアルゴリズム
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../topics/Bitcoin/bip32/" class="md-nav__link">
+        BIP32 鍵派生アルゴリズム
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../topics/Bitcoin/gg18/" class="md-nav__link">
+        Fast Multiparty Threshold ECDSA with Fast Trustless Setup
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../topics/Bitcoin/p2sh/" class="md-nav__link">
+        P2SH まとめ
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../topics/Bitcoin/uasf/" class="md-nav__link">
+        Bitcoin の segwit fork のまとめ
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      <label class="md-nav__link" for="__nav_3_2">
+        Kubernetes
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Kubernetes" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Kubernetes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../topics/Kubernetes/k8s-template/" class="md-nav__link">
+        Kubernetes マニフェストジェネレータ
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../topics/Kubernetes/microk8s-for-programmer/" class="md-nav__link">
+        サーバープログラマのための microk8s のすすめ
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3" type="checkbox" id="__nav_3_3" >
+      
+      <label class="md-nav__link" for="__nav_3_3">
+        Life
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Life" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          Life
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../topics/Life/remote-uk/" class="md-nav__link">
+        海外企業(日本法人無し)リモート勤務する場合の税金とか社保とか
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_4" type="checkbox" id="__nav_3_4" >
+      
+      <label class="md-nav__link" for="__nav_3_4">
+        Misc
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Misc" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_4">
+          <span class="md-nav__icon md-icon"></span>
+          Misc
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../topics/misc/rust-netlibs/" class="md-nav__link">
+        Rust のネットワークライブラリ/フレームワーク
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../topics/misc/stumpwm/" class="md-nav__link">
+        window manager を Stumpwm へ移行
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../topics/misc/swagger-codegen-typescript-koa2/" class="md-nav__link">
+        swagger-codegen-typescript-koa2
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="_1">はじめに</h1>
+<p>一月に肺炎やってから、FF14 だ在宅勤務だと忙しく創作脳にならなかった。
+ようやく落ちついてきたので趣味プロを再開したい。</p>
+<p>Bitcoin のツールもやらなきゃだが、ちょっと新しいのやりたい気分。
+前々から心のやりたい事リストに載っていた 3D を棚卸し。</p>
+<p>というわけで Unreal Engine やってみよう。
+できればゲーム作れればいいけども、当面の目標は 3D モデル動かすところかな。
+VR ヘッドセットや LookingGlass がもったいない。</p>
+<h1 id="c-project">C++ Project</h1>
+<p>ブループリントは昔ちょっとチュートリアルだけやったことがある。
+あれはあれで素晴しいが、数式とかループとかはやはりコードで書けた方が効率良さそうな感じ。</p>
+<p>コーディングのチュートリアルはこれかな <a href="https://docs.unrealengine.com/ja/Programming/QuickStart/index.html">https://docs.unrealengine.com/ja/Programming/QuickStart/index.html</a>
+UE4 と割と独立している感じ。
+UE4 側でクラス作成を指示すると C++ のスケルトンと VisualStudio のプロジェクトファイルが作られ、
+VS 側で普通にエディットしてビルドすると、UE4 側で使えるようになるようだ。
+VS Code でも連携できるみたい。</p>
+<h2 id="unrealbuildtool">UnrealBuildTool</h2>
+<p>より詳細なビルドプロセスの説明のドキュメントがあった:
+<a href="https://docs.unrealengine.com/ja/Programming/BuildTools/UnrealBuildTool/index.html">https://docs.unrealengine.com/ja/Programming/BuildTools/UnrealBuildTool/index.html</a></p>
+<p>UE4 の各モジュールは build.cs ファイルを持ち、ここにビルド方法が書かれている。
+また、.sln や .vcproj ファイルを作成する GenerateProjectFiles.bat がある。
+これらをまとめて、UnrealBuildTool と呼ぶようだ。</p>
+<p><a href="https://docs.unrealengine.com/ja/Programming/UnrealBuildSystem/ProjectFileGenerator/index.html">https://docs.unrealengine.com/ja/Programming/UnrealBuildSystem/ProjectFileGenerator/index.html</a>
+UE4 外で変更した場合は GenerateProjectFiles.bat を呼ぶ必要があるそうだ。
+逆に言えば、GenerateProjectFiles.bat を呼べば UE4 外で変更してもいいってことだな。</p>
+<p>下の方の FAQ を見ると、ビルド時には自動的にソースを探してくるからプロジェクトファイルの更新は不要みたい。必要なのは UE4 エディタに反映させるためかな?
+もしかして、VC コンパイル環境さえあれば、ソースコードの編集は Emacs でやっても問題ないのかな。
+まぁデバッガとか付いてるし VSCode でよいか。</p>
+<p><a href="https://docs.unrealengine.com/ja/Programming/Development/VisualStudioSetup/UnrealVS/index.html">VS拡張</a> を使えば、メニューやショートカットキーなどから GenerateProjectFiles.bat を呼べるみたい。</p>
+<h2 id="visual-studio">Visual Studio</h2>
+<p>コンパイラは VS の Build Tools が必要。
+VS 入れると付いてくるので VS を入れよう。</p>
+<p>UE4.22 移行は VS2017 が対応バージョンらしい。
+2019 でも動くんじゃないかなというわけで VS2019 入れる。
+「C++ によるデスクトップ開発」「C++ によるゲーム開発」
+「C++ によるゲーム開発」の中の UE インストーラとか UE android IDE も入れとく。</p>
+<p>個別のコンポーネントから C# コンパイラ...は既にチェックされていた。</p>
+<h2 id="visual-studio-code">Visual Studio Code</h2>
+<p>エディタは VSCode で。
+インストールして、拡張を。
+ - C/C++ 
+ - C#
+ - VSCode icons
+ - Git Lens
+ - Git History
+ - Bracket Pair Colorizer
+ - Settings Sync
+ - REST Client
+ - Bookmarks
+ - Japanese Language Pack
+ - Path Autocomplete
+ - GitHub Pull Requests
+ - Output Colorizer
+ - Log File Hightlighter
+ - Bash Debug
+ - Awesome Emacs Keymap
+ - vscode-emacs-tab
+   keybinding.json の修正が必要 (Ctrl+Shilf+P -&gt; "key" -&gt; キーボードショートカットを開く(JSON))
+   { "key": "tab", "command": "emacs-tab.reindentCurrentLine", "when": "editorTextFocus" }
+   VSCode の再起動が必要。
+ - EditorConfig
+ - GenerateEditorConfig</p>
+<p>render whitespace -&gt; boundary
+insert spaces -&gt; true
+tab completion -&gt; on
+tab size -&gt; 3</p>
+<p>UE4 プロジェクトを開いて編集メニューから使うエディタの指定をする。
+一般 -&gt; ソースコード -&gt; ソースコードエディタを Visual Studio Code.
+UE 再起動しろと出てくるので再起動する。</p>
+<h2 id="net-core-sdk">.NET Core SDK</h2>
+<p>VSCode 開いてると入れろと出てくるので入れる。</p>
+<h2 id="ue-c">UE C++ チュートリアル</h2>
+<p>早速チュートリアルでも。
+新規プロジェクトのゲーム、テンプレートは Blank.
+プロジェクト設定から、C++、デスクトップ、ハイエンド、スターターコンテンツ有り、レイトレ無効。
+名前を入れてプロジェクト作成。</p>
+<p>// プロジェクトが開いたら、上に書いたようにソースコードエディタを VSCode にしておく。</p>
+<p>ファイルメニューから、新規 C++ クラス、親は Actor で、名前は FloatingActor.
+するとコンパイルが始まり、完了すると VSCode が開く。</p>
+<p>UE4 で「Visual Studio Code Project を更新」しておくと、VSCode 上で include path など設定されるようだ。</p>
+<p>チュートリアルに従って .cpp, .h ファイルを編集。</p>
+<p>なんか不完全クラスとか言われる。クラス定義が見つからないみたいだ。
+最近の UE でヘッダの構成が変わったらしく、</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>  <span class="cp">#include</span> <span class="cpf">&lt;Runtime/Engine/Classes/Components/StaticMeshComponent.h&gt;</span><span class="cp"></span>
+  <span class="cp">#include</span> <span class="cpf">&lt;Runtime/CoreUObject/Public/UObject/ConstructorHelpers.h&gt;</span><span class="cp"></span>
+</code></pre></div>
+</td></tr></table>
+<p>が必要。
+まとめて include してくれる include ファイルは無いんかな。</p>
+<p>VSCode のデバッグ実行。あとはエラーを無視して続けると UE4 Editor に行くらしいのだが、exe の生成に失敗した。</p>
+<p>UE4 の方だとコンパイルはできる。<code>?_?</code>
+さらにコンテンツブラウザから FloatingActor を見つけてパースペクティブビューへドロップ。
+詳細から位置を (-180, 0, 180) へ変更。
+プレイすると、上下しつつ回転する...しないな。</p>
+<h2 id="error-no-target-name-was-specified">ビルドエラー "ERROR: no target name was specified"</h2>
+<p>Code からビルドすると、</p>
+<ol>
+<li>launch.json</li>
+<li>tasks.json</li>
+<li>UE_4.24/Engine/Build/BatchFiles/Build.bat</li>
+<li>UE_4.24/Engine/Binaries/DotNET/UnrealBuildTool.exe</li>
+</ol>
+<p>と実行されるようである。
+UnrealBuildTool.exe で、<code>ERROR: No target name was specified on the command-line.</code> と出ている。
+この時の起動引数は <code>Test Win64 Development "d:/dai/Documents/Unreal Projects/Test/Test.uproject' -waitmutex</code> のようだ。</p>
+<p>コマンドラインのヘルプが無いので正しくは分からんが、特に問題なさそうな感じ。
+上でヘッダが変わったみたくコマンドライン引数が変わった可能性もあるが、それならググれば出てくるよなぁ。</p>
+<p>ソースを見る。
+<a href="https://github.com/EpicGames/UnrealEngine/blob/6c20d9831a968ad3cb156442bebb41a883e62152/Engine/Source/Programs/UnrealBuildTool/Configuration/TargetDescriptor.cs">https://github.com/EpicGames/UnrealEngine/blob/6c20d9831a968ad3cb156442bebb41a883e62152/Engine/Source/Programs/UnrealBuildTool/Configuration/TargetDescriptor.cs</a>
+のようだ。</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>    <span class="c1">// Otherwise assume they are target names</span>
+    <span class="n">TargetNames</span><span class="p">.</span><span class="n">AddRange</span><span class="p">(</span><span class="n">InlineArguments</span><span class="p">);</span>
+</code></pre></div>
+</td></tr></table>
+<p>ここに来る前に、</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>    <span class="k">if</span><span class="p">(</span><span class="n">UnrealTargetPlatform</span><span class="p">.</span><span class="n">TryParse</span><span class="p">(</span><span class="n">InlineArguments</span><span class="p">[</span><span class="m">0</span><span class="p">],</span> <span class="k">out</span> <span class="n">ParsedPlatform</span><span class="p">))</span> <span class="p">{</span>
+      <span class="p">...</span>
+      <span class="k">continue</span><span class="p">;</span>
+    <span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+<p>と、platform と configuration の定義名として判定を試み、成功したらそこで抜けちゃうみたい。
+今は Test という名前のプロジェクト。
+configuration に有りそうである。</p>
+<p>MyTest という名前で作り直したら通った。
+コード本体部分も TEST_API マクロが MYTEST_API になってたりと微妙に違ってるので、.cpp のコピーはしない方がよい。</p>
+<p>またコンパイル失敗。
+今度は構成を <code>MyTest(Development)</code> ではなく <code>MyTestEditor(Development)</code> を選んだら成功した。</p>
+<p>しかし移動も回転もしない。
+よく見たらチュートリアルの最後で Tick() の実装があった。
+これを書いて実行したら浮遊回転した。</p>
+<p>とりあえずok.</p>
+<h2 id="_2">ソースコード</h2>
+<p>FloatingActor.h</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="cp">#pragma once</span>
+
+<span class="cp">#include</span> <span class="cpf">&quot;CoreMinimal.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;GameFramework/Actor.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;FloatingActor.generated.h&quot;</span><span class="cp"></span>
+
+<span class="n">UCLASS</span><span class="p">()</span>
+<span class="k">class</span> <span class="nc">MYTEST_API</span> <span class="nl">AFloatingActor</span> <span class="p">:</span> <span class="k">public</span> <span class="n">AActor</span>
+<span class="p">{</span>
+   <span class="n">GENERATED_BODY</span><span class="p">()</span>
+
+<span class="k">public</span><span class="o">:</span>
+   <span class="c1">// Sets default values for this actor&#39;s properties</span>
+   <span class="n">AFloatingActor</span><span class="p">();</span>
+   <span class="n">UPROPERTY</span><span class="p">(</span><span class="n">VisibleAnywhere</span><span class="p">)</span>
+   <span class="n">UStaticMeshComponent</span><span class="o">*</span> <span class="n">VisualMesh</span><span class="p">;</span>
+
+<span class="k">protected</span><span class="o">:</span>
+   <span class="c1">// Called when the game starts or when spawned</span>
+   <span class="k">virtual</span> <span class="kt">void</span> <span class="n">BeginPlay</span><span class="p">()</span> <span class="k">override</span><span class="p">;</span>
+
+<span class="k">public</span><span class="o">:</span>
+   <span class="c1">// Called every frame</span>
+   <span class="k">virtual</span> <span class="kt">void</span> <span class="n">Tick</span><span class="p">(</span><span class="kt">float</span> <span class="n">DeltaTime</span><span class="p">)</span> <span class="k">override</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div>
+</td></tr></table>
+<p>FloatingActor.cpp</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&quot;./FloatingActor.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;Runtime/Engine/Classes/Components/StaticMeshComponent.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;Runtime/CoreUObject/Public/UObject/ConstructorHelpers.h&gt;</span><span class="cp"></span>
+
+
+<span class="c1">// Sets default values</span>
+<span class="n">AFloatingActor</span><span class="o">::</span><span class="n">AFloatingActor</span><span class="p">()</span>
+<span class="p">{</span>
+   <span class="c1">// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don&#39;t need it.</span>
+   <span class="n">PrimaryActorTick</span><span class="p">.</span><span class="n">bCanEverTick</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+   <span class="n">VisualMesh</span> <span class="o">=</span> <span class="n">CreateDefaultSubobject</span><span class="o">&lt;</span><span class="n">UStaticMeshComponent</span><span class="o">&gt;</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;Mesh&quot;</span><span class="p">));</span>
+
+   <span class="n">VisualMesh</span><span class="o">-&gt;</span><span class="n">SetupAttachment</span><span class="p">(</span><span class="n">RootComponent</span><span class="p">);</span>
+
+   <span class="k">static</span> <span class="n">ConstructorHelpers</span><span class="o">::</span><span class="n">FObjectFinder</span><span class="o">&lt;</span><span class="n">UStaticMesh</span><span class="o">&gt;</span> <span class="n">CubeVisualAsset</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;/Game/StarterContent/Shapes/Shape_Cube.Shape_Cube&quot;</span><span class="p">));</span>
+
+   <span class="k">if</span> <span class="p">(</span><span class="n">CubeVisualAsset</span><span class="p">.</span><span class="n">Succeeded</span><span class="p">())</span>
+   <span class="p">{</span>
+      <span class="n">VisualMesh</span><span class="o">-&gt;</span><span class="n">SetStaticMesh</span><span class="p">(</span><span class="n">CubeVisualAsset</span><span class="p">.</span><span class="n">Object</span><span class="p">);</span>
+      <span class="n">VisualMesh</span><span class="o">-&gt;</span><span class="n">SetRelativeLocation</span><span class="p">(</span><span class="n">FVector</span><span class="p">(</span><span class="mf">0.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">));</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Called when the game starts or when spawned</span>
+<span class="kt">void</span> <span class="n">AFloatingActor</span><span class="o">::</span><span class="n">BeginPlay</span><span class="p">()</span>
+<span class="p">{</span>
+   <span class="n">Super</span><span class="o">::</span><span class="n">BeginPlay</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">// Called every frame</span>
+<span class="kt">void</span> <span class="n">AFloatingActor</span><span class="o">::</span><span class="n">Tick</span><span class="p">(</span><span class="kt">float</span> <span class="n">DeltaTime</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="n">Super</span><span class="o">::</span><span class="n">Tick</span><span class="p">(</span><span class="n">DeltaTime</span><span class="p">);</span>
+
+   <span class="n">FVector</span> <span class="n">NewLocation</span> <span class="o">=</span> <span class="n">GetActorLocation</span><span class="p">();</span>
+
+   <span class="n">FRotator</span> <span class="n">NewRotation</span> <span class="o">=</span> <span class="n">GetActorRotation</span><span class="p">();</span>
+   <span class="kt">float</span> <span class="n">RunningTime</span> <span class="o">=</span> <span class="n">GetGameTimeSinceCreation</span><span class="p">();</span>
+   <span class="kt">float</span> <span class="n">DeltaHeight</span> <span class="o">=</span> <span class="p">(</span><span class="n">FMath</span><span class="o">::</span><span class="n">Sin</span><span class="p">(</span><span class="n">RunningTime</span> <span class="o">+</span> <span class="n">DeltaTime</span><span class="p">)</span> <span class="o">-</span> <span class="n">FMath</span><span class="o">::</span><span class="n">Sin</span><span class="p">(</span><span class="n">RunningTime</span><span class="p">));</span>
+   <span class="n">NewLocation</span><span class="p">.</span><span class="n">Z</span> <span class="o">+=</span> <span class="n">DeltaHeight</span> <span class="o">*</span> <span class="mf">20.0f</span><span class="p">;</span>       <span class="c1">//Scale our height by a factor of 20</span>
+   <span class="kt">float</span> <span class="n">DeltaRotation</span> <span class="o">=</span> <span class="n">DeltaTime</span> <span class="o">*</span> <span class="mf">20.0f</span><span class="p">;</span>    <span class="c1">//Rotate by 20 degrees per second</span>
+   <span class="n">NewRotation</span><span class="p">.</span><span class="n">Yaw</span> <span class="o">+=</span> <span class="n">DeltaRotation</span><span class="p">;</span>
+   <span class="n">SetActorLocationAndRotation</span><span class="p">(</span><span class="n">NewLocation</span><span class="p">,</span> <span class="n">NewRotation</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="フッター">
+      
+        
+        <a href="../2020-04-09---blog-setup/" class="md-footer__link md-footer__link--prev" aria-label="前: ブログ構築" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                前
+              </span>
+              ブログ構築
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../2021-08-13---upgrade-gatsby/" class="md-footer__link md-footer__link--next" aria-label="次: gatsby から mkdocs へ移行" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                次
+              </span>
+              gatsby から mkdocs へ移行
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\u3000\u3001\u3002\uff0c\uff0e]+", "search.placeholder": "\u691c\u7d22", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.709b4209.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.febc23d1.min.js"></script>
+      
+    
+  </body>
+</html>
