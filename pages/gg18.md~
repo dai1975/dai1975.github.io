@@ -1,0 +1,261 @@
+---
+title: Fast Multiparty Threshold ECDSA with Fast Trustless Setup
+date: "2019-03-13T00:00:00.000+09:00"
+template: "post"
+draft: false
+# slug: "slug"
+category: "Tech"
+tags:
+  - "Tech"
+  - "crypto"
+description: "GG18 論文抄訳"
+#socialImage: "/media/42-line-bible.jpg"
+---
+# Fast Multiparty Threshold ECDSA with Fast Trustless Setup
+
+Rosario Gennaro, Steven Goldfeder. 2018. 論文。
+著者のイニシャルと発表年をとって GG18 と呼称しているようなので倣う。
+
+離散対数暗号の DSA 形式の署名における多人数の threshold signatures の問題への解法が述べられている。
+
+
+# DSA の threshold signatures
+
+threshold signing / threshold signatures とは、$n$人で秘密鍵を分割保有し、そのうち $t+1$ 人集まれば署名を作成できるというシステム。いわゆるマルチシグ。
+
+離散対数の DSA は一般的に
+
+$$
+\begin{aligned}
+ R &= g^{\frac{1}{k}} \\
+ r &= H'(R) \\
+ s &= k(H(m) + xr) \\
+\end{aligned}
+$$
+
+と表される。
+ここで、
+
+- $ x $ は秘密鍵
+- $ k,r,s $ は署名に用いる一時的な値
+- $ M $ は署名対象のメッセージ
+- $ H $ はメッセージのダイジェストを得る関数
+- $ H' $ は巡回群 $ G $ からスカラ $ Zq $ へ変換する関数  
+  たとえば ECDSA なら座標 $ P $ の $ x $ 座標を得る関数
+
+である。
+
+
+threshold signing のためには、x,k を分散して保有し、r,s を生成できればよいのだが、分散保有した値から、kの逆数の指数演算と、二つの秘密数 x,k の積を求めるのが難しい。
+
+
+# MtA
+
+この問題を解決するため、GG18 論文では Multitive to Addaptive というテクニックを適用している。積和変換とでも訳せばよいか。
+
+Alice, Bob がそれぞれ秘密数 $ a, b $ を持っているとする。
+
+1. Alice は自身の公開鍵 $ A $ で $ a $ を加法準同型暗号化した値 $ c_A = E_A(a) $ を Bob へ送る
+2. Bob はランダムな値 $ \beta' $ を選び、 $ c\_B = b \times\_E c\_A +\_E E\_A(\beta') $ を計算して Alice へ送る。  
+ここで、 $ \times\_E, +\_E $ は、暗号化された値に対する演算。
+3. Alice は得た $ c_A $ を秘密鍵で複合し、$ \alpha' $ を得る。
+4. それぞれ $ \beta = -\beta'\ (mod\ q), \alpha = \alpha'\ (mod\ q) $ を計算する。
+5. $ ab = \alpha + \beta $ である。
+
+途中に出てきた $ c_B $ を展開すると、
+
+$$
+\begin{aligned}
+  c_B &= b \times_E c_A &+_E E_A(\beta') \\
+      &= b \times_E E_A(a) &+_E E_A(\beta') \\
+
+E は加法で準同型なので、\\
+
+  c_B &= E_A(ab + \beta') \\
+\end{aligned}
+$$
+
+$ c_B $ を複合した値が $ \alpha' $ であるから、
+
+$$
+\begin{aligned}
+ \alpha' &= ab + \beta' \\
+ ab &= \alpha' - \beta' = \alpha + \beta
+\end{aligned}
+$$
+
+
+# MtA を用いた秘密数の積の分散
+
+$ k $ の加法分散 $ k_1, k_2, ..., k_n $ を n人のプレーヤー $ P_0, P_1, ... P_n $ それぞれに秘密共有する。 同様に $ \gamma $ も秘密共有する。
+
+
+$$
+\begin{aligned}
+k &= k_1 + k_2 + ... + k_n \\
+\gamma &= \gamma_1 + \gamma_2 + ... + \gamma_n \\
+\end{aligned}
+$$
+
+$ k $ と $ \gamma $ の積を計算すると、
+
+$$
+\begin{aligned}
+  k \times \gamma &=& &(k_1 + ... k_n) \times (\gamma_1 + ... + \gamma_n) \\
+  &=&+&\ k_1\gamma_1 + k_1\gamma_2 + ... + k_1\gamma_n \\
+  & &+&\ k_2\gamma_1 + k_2\gamma_2 + ... + k_2\gamma_n \\
+  & &+&\ ...  \\
+  & &+&\ k_n\gamma_1 + k_2\gamma_2 + ... + k_n\gamma_n \\
+  &=& & \sum_{i,j}^n k_i\gamma_j
+\end{aligned}
+$$
+
+ここで、 $ k_i r_j = \alpha_{ij} + \beta_{ij} $ として、上の式を展開すると、
+
+$$
+\begin{aligned}
+k \times \gamma &=& \sum_{i,j}^n (\alpha_{ij}+\beta_{ij}) \\
+ &=& \sum_j^n \sum_i^n (\alpha_{ij}+\beta{ji}) \\
+右の総和を \\
+\delta_i &=& \sum_j^n (\alpha_{ij}+\beta_{ji}) \\
+と置くと、 \\
+  k \times \gamma &=& \sum_i^n \delta_i \\
+\delta_i を展開して、\\ 
+\delta_i &=& \sum_j^n (\alpha_{ij}+\beta_{ji}) \\
+ &=& (\alpha_{ii}+\beta_{ii}) + \sum_{j\neq i}^n (\alpha_{ij}+\beta_{ji}) \\
+ &=& k_i \times \gamma_i + + \sum_{j\neq i}^n (\alpha_{ij}+\beta_{ji}) \\
+\end{aligned}
+$$
+
+すべてのプレーヤー同士 $P_i, P_j$ で $k_i \times \gamma_j と k_j \times \gamma_i $ を MtA すると、プレーヤー $P_i$ は、$ \alpha_{ij; j\neq i} と \beta_{ji; j\neq i}$ を所有する。$P_i$ は当然 $k_i, \gamma_i$ も保有しているので、$\delta_i$を計算できる。
+
+つまり、二つの秘密数の加法分散共有から、その積の加法分散共有へと変換できる。
+
+# 分散鍵生成
+論文ではよく分からないが、joint-Feldman VSS を用いていると思われる。
+ここでは鍵生成は省略し、以下の性質の秘密分散が出来ているとして進める。
+
+- 秘密鍵を $x$ とし、各パーティ $P_i$ はその加法分散 $u_i$ を持つ。  
+    $$
+    x = \sum_i^n u_i
+    $$
+- 公開鍵 $ y $ は、  
+    $$
+    y = g^x = g^{\sum_i^n u_i} = \prod_i^n g^{u_i}
+    $$
+
+
+
+# 署名生成プロトコル
+以上を踏まえて署名生成プロトコルを説明する。
+
+論文では悪意あるプレーヤーへの耐性や、一般的な (t,n) threshold signining について述べているが、ここでは善意のパーティによる (n-1,n) threshold signing に簡略化する。
+
+
+## Phase 1
+各プレーヤー $P_i$ はランダムな値 $k_i, \gamma_i$ を選ぶ。
+
+さらに、 $g^{u_i}$ および $g^{\gamma_i}$ をブロードキャストする。
+
+## Phase 2
+全てのプレーヤーのペア $P_i, P_j$ で $k_i, \gamma_j$ の MtA を行い、
+
+$$
+  \delta_i = k_i\gamma_i + \sum_{j\neq i}^n (\alpha_{ij} + \beta_{ji})
+$$
+
+を計算する。
+
+同様に、$ k_iu_i = \mu_{ij} + \nu_{ij} $ の MtA を行い、
+
+$$
+  \sigma_i = k_iu_i + \sum_{j\neq i}^n (\mu_{ij} + \nu_{ji})
+$$
+
+を計算する。
+
+## Phase 3
+
+各プレーヤー $P_i$ は、 $\delta_i$ をブロードキャストする。
+
+自身の持つ $\delta_i$ と、受け取った $\delta_j$ を足して、
+
+$$
+  \delta = k\gamma = \sum_i{\delta_i}
+を計算し、その巡回群上の逆数も計算する。
+$$
+
+## Phase 4
+各プレーヤー $P_i$ は、$ R=(\prod_i^n g^{\gamma_i})^{\delta^{-1}} $ を計算する。なお、$ g^{\gamma_i} $ は Phase1 で受け取っている。
+
+この式を展開すると、
+
+$$
+\begin{aligned}
+R &= (\prod_i^n g^{\gamma_i})^{\delta^{-1}} \\
+  &= (g^{\sum_i^n \gamma_i})^{(k\gamma)^{-1}} \\
+  &= g^{\gamma \times (k\gamma)~{-1}} \\
+  &= g^{k^{-1}} \\
+\end{aligned}
+$$
+
+になる。
+
+$H'$ 関数を用いて、
+
+$$
+ r = H'(R)
+$$
+
+も計算する。これが署名の一つ $r$ の値である。
+
+## Phase 5
+各プレーヤー $P_i$ は　$ s_i = mk_i + r\sigma_i $ を計算する。
+
+さらに、計算した $s_i$ をブロードキャストし、受け取った $s_j$ を用いて総和を計算する。この総和は、
+
+$$
+\begin{aligned}
+  s &= \sum_i^n s_i \\
+    &= \sum_i^n(mk_i + r\sigma_i) \\
+    &= m\sum_i^n k_i + r\sum_i^n \sigma_i \\
+    &= mk + rkx \\
+    &= k(m + rx) \\
+\end{aligned}
+$$
+
+であり、署名の $s$ 値に一致する。
+
+
+# 検証
+DSA と同じく
+
+$$
+  g^{\frac{m}{s}} + y^{\frac{r}{s}} = R
+$$
+
+を確認すればよい。
+
+$$
+\begin{aligned}
+ g^{\frac{m}{s}} + y^{\frac{r}{s}} 
+ &= g^{\frac{m}{s}} + (g^{x})^{\frac{r}{s}} \\
+ &= g^{\frac{m+rx}{s}} \\
+ &= g^{\frac{1}{k}} \\
+ &= R \\
+\end{aligned}
+$$
+
+# リンク
+
+- 論文
+  http://stevengoldfeder.com/papers/GG18.pdf  
+
+- 以上を確認したコード
+    https://github.com/dai1975/gg18-etude  
+
+- 省略した悪意あるプレーヤー対策も含んだ一般的な実装(上のコードの楕円曲線計算にも利用)
+    https://github.com/KZen-networks/multi-party-ecdsa
+
+
+

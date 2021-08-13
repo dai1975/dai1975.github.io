@@ -1,0 +1,785 @@
+
+
+
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="segwit 実装にともなって 2017年7-8月頃に予定されている Bitcoin フォークのまとめ。">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="クリップボードへコピー">
+      
+        <meta name="lang:clipboard.copied" content="コピーしました">
+      
+        <meta name="lang:search.language" content="ja">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="何も見つかりませんでした">
+      
+        <meta name="lang:search.result.one" content="1件見つかりました">
+      
+        <meta name="lang:search.result.other" content="#件見つかりました">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-　、。，．]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.3">
+    
+    
+      
+        <title>Bitcoin の segwit fork のまとめ</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.adb8469c.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.a8b3c06d.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#ef5350">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.86422ebf.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="red" data-md-color-accent="">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#_1" tabindex="0" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../.." title="dai's blog" aria-label="dai's blog" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              dai's blog
+            </span>
+            <span class="md-header-nav__topic">
+              
+                Bitcoin の segwit fork のまとめ
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" aria-label="search" name="query" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            検索キーワードを入力してください
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../.." title="dai's blog" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    dai's blog
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Welcome to MkDocs" class="md-nav__link">
+      Welcome to MkDocs
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Pages
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Pages
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../bech32/" title="Bech32 チェックサムのアルゴリズム" class="md-nav__link">
+      Bech32 チェックサムのアルゴリズム
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../bip32/" title="BIP32 鍵派生アルゴリズム" class="md-nav__link">
+      BIP32 鍵派生アルゴリズム
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../gg18/" title="Fast Multiparty Threshold ECDSA with Fast Trustless Setup" class="md-nav__link">
+      Fast Multiparty Threshold ECDSA with Fast Trustless Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../k8s-template/" title="Kubernetes マニフェストジェネレータ" class="md-nav__link">
+      Kubernetes マニフェストジェネレータ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../microk8s-for-programmer/" title="サーバープログラマのための microk8s のすすめ" class="md-nav__link">
+      サーバープログラマのための microk8s のすすめ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../p2sh/" title="P2SH まとめ" class="md-nav__link">
+      P2SH まとめ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../remote-uk/" title="海外企業(日本法人無し)リモート勤務する場合の税金とか社保とか" class="md-nav__link">
+      海外企業(日本法人無し)リモート勤務する場合の税金とか社保とか
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../rust-netlibs/" title="Rust のネットワークライブラリ/フレームワーク" class="md-nav__link">
+      Rust のネットワークライブラリ/フレームワーク
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../stumpwm/" title="window manager を Stumpwm へ移行" class="md-nav__link">
+      window manager を Stumpwm へ移行
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../swagger-codegen-typescript-koa2/" title="swagger-codegen-typescript-koa2" class="md-nav__link">
+      swagger-codegen-typescript-koa2
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Bitcoin の segwit fork のまとめ
+      </label>
+    
+    <a href="./" title="Bitcoin の segwit fork のまとめ" class="md-nav__link md-nav__link--active">
+      Bitcoin の segwit fork のまとめ
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">目次</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#segwit-and-bip9" class="md-nav__link">
+    Segwit and BIP9
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uasf-and-bip148" class="md-nav__link">
+    UASF and BIP148
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#segwit2x-and-bip91" class="md-nav__link">
+    Segwit2x and BIP91
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bitcoincash" class="md-nav__link">
+    BitcoinCash
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Posts
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Posts
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../posts/2020-04-09---blog-setup/" title="ブログ構築" class="md-nav__link">
+      ブログ構築
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../posts/2020-04-11---unreal_engine/" title="UE4 C++ (VSCode) セットアップ" class="md-nav__link">
+      UE4 C++ (VSCode) セットアップ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../posts/2021-08-13---upgrade-gatsby/" title="gatsby から mkdocs へ移行" class="md-nav__link">
+      gatsby から mkdocs へ移行
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">目次</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#segwit-and-bip9" class="md-nav__link">
+    Segwit and BIP9
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uasf-and-bip148" class="md-nav__link">
+    UASF and BIP148
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#segwit2x-and-bip91" class="md-nav__link">
+    Segwit2x and BIP91
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bitcoincash" class="md-nav__link">
+    BitcoinCash
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="_1">分岐まとめ</h1>
+<p>関連するフォークは以下のものがある:</p>
+<ul>
+<li>Segwit or BIP141. BIP9 の手順でデプロイされる。</li>
+<li>Segwit2x. BIP91 の手順でデプロイされる。</li>
+<li>UASF. BIP148 の手順でデプロイされる。</li>
+<li>BitcoinCash or BitcoinUnlimited or UAHF. http://www.bitcoincash.org/ の手順でデプロイされる。</li>
+</ul>
+<h2 id="segwit-and-bip9">Segwit and BIP9</h2>
+<p>sigScript を tx から分離する仕様(BIP141).</p>
+<p>デプロイ手順は BIP9 で、bit は 1, 期間は 2016年11月15日から一年間。
+BIP9 は、チェーンブロックを 2016 毎に区切り、あるブロック群の状態は直前のブロック群の状態によって決める。</p>
+<ul>
+<li>直前のブロック群の 1916 ブロック(95%)が指定の bit を立てていた場合、ロックイン状態とする。</li>
+<li>直前のブロック群がロックイン状態の場合、アクティブ状態とする。</li>
+</ul>
+<p>要するに、2016ブロック群中の95%が bit を立てていたら、さらに2016ブロック経過のちにアクティブになる。</p>
+<h2 id="uasf-and-bip148">UASF and BIP148</h2>
+<p>bit1 が立っていない(正確には3,2,1bit が 001 ではない)ブロックを無効とする。
+必然的に 100% のブロックで bit1 が立つので、Segwit がデプロイされる。</p>
+<p>デプロイは 2017年8月1日から 2017年11月17日のフラグデイ方式。
+正確な開始時刻は unixtime 1501545600 = 2017-08-01T09:00:00+09:00
+このタイミングで Segwit deploy がロックインまたはアクティブ状態で無い場合に発動する。</p>
+<h2 id="segwit2x-and-bip91">Segwit2x and BIP91</h2>
+<p>BIP148 と同様に、bit1 が立っていないブロックを無効とする。</p>
+<p>デプロイ方法は BIP9 に似て、336ブロック中の 269ブロック(80%)でロックイン。フラグは bit4.
+期間は 2017年7月1日から2017年11月15日。</p>
+<h2 id="bitcoincash">BitcoinCash</h2>
+<p>ハードフォーク。
+有効なブロックサイズを 1MB超8MB以下にする。
+さらに新たに SIGHASH_FORKID(=0) を追加しリプレイ攻撃を防止。</p>
+<p>デプロイは 1501590000 = 2017-08-01T21:20:00+0900 のフラグデイ。</p>
+<h1 id="_2">状況</h1>
+<p>http://bitcoin.sipa.be/versions.html</p>
+<p>2017年7月20日現在、
+Segwit (flag1) は 45% ほどで、このままでは達成の見込みはない。
+Segwit2x (flag4) は 80% に達し、現ピリオドでロックインの可能性高い。
+UASF は、8/1までに Segwit ロックインされないので、UASF ロックインの見込み。
+UAHF は Jihan の言動より発動の見込み。</p>
+<p>より精確な日付を調べる。
+  https://blockchain.info/ja</p>
+<p>2017-07-20 12:46:15 UTC(=@1500554775) に 476700 ブロックが掘られている。
+  https://blockchain.info/ja/block/000000000000000000bd6ed8a9f5f2b1f2708e8c7eefb33a14ba95726bbf0810</p>
+<p>336ブロック期間の始まりは、476784, 477120, 477456, ... となる。
+同様に 2016 ブロック期間は、477792, 479808, 481824, ... 
+1ブロック10分として、各ブロックの時刻を予測すると、</p>
+<table>
+<thead>
+<tr>
+<th align="center">%336</th>
+<th align="center">%2016</th>
+<th align="center">unixtime</th>
+<th align="center">JST</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">476784</td>
+<td align="center"></td>
+<td align="center">1500605175</td>
+<td align="center">2017-07-21 11:46:15</td>
+</tr>
+<tr>
+<td align="center">477120</td>
+<td align="center"></td>
+<td align="center">1500806775</td>
+<td align="center">2017-07-23 19:46:15</td>
+</tr>
+<tr>
+<td align="center">477456</td>
+<td align="center"></td>
+<td align="center">1501008375</td>
+<td align="center">2017-07-26 03:46:15</td>
+</tr>
+<tr>
+<td align="center">477792</td>
+<td align="center">477792</td>
+<td align="center">1501209975</td>
+<td align="center">2017-07-28 11:46:15</td>
+</tr>
+<tr>
+<td align="center">478128</td>
+<td align="center"></td>
+<td align="center">1501411575</td>
+<td align="center">2017-07-30 19:46:15</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">1501545600</td>
+<td align="center">2017-08-01 09:00:00</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">1501590000</td>
+<td align="center">2017-08-01 21:20:00</td>
+</tr>
+<tr>
+<td align="center">478464</td>
+<td align="center"></td>
+<td align="center">1501613175</td>
+<td align="center">2017-08-02 03:46:15</td>
+</tr>
+<tr>
+<td align="center">478800</td>
+<td align="center"></td>
+<td align="center">1501814775</td>
+<td align="center">2017-08-04 11:46:15</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">479808</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">481824</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">483840</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p>まず Segwit2x だが、現ピリオドで 80% を占めれば、7月21日にロックイン、7月23日にアクティブになる。
+現ピリオドで未達であれば、次のピリオドに順にずれる。</p>
+<p>仮に現ピリオドで Segwit2x が有効になっても、Segwit の現行ピリオドで flag1 を 90% にするのは無理。次の Segwit ピリオドは block 477792 およそ 7月28日から始まり、この期間が終わってようやくロックインになる。
+ところがこの期間中に UASF のフラグデイ 8月1日が含まれるので、Segwit2x の状況にかかわらず UASF が発動することになるだろう。
+ただし、Segwit2x が発動済であれば、Segwit2x ノードと UASF ノードで動作は同一になる。
+まとめると、発生するフォークは、 Segwit2x がアクティブになった時の Segwit2x と現行チェーンでのフォークのみになる(UAHFは除く)。</p>
+<h2 id="segwit2x">Segwit2x のソフトフォーク</h2>
+<p>Segwit2x のみがアクティブになっている場合、</p>
+<ul>
+<li>Segwit2xノード: flag1 の立っていないブロックを拒否する(flag1チェーン)</li>
+<li>非Segwit2xノード: flag1 に関わらず受け入れる(coreチェーン)</li>
+</ul>
+<p>という二つのチェーンが並び立つ。
+flag1 ブロックは両方のチェーンで有効であり、非flag1ブロックはcoreチェーンのみで有効になる。
+非Segwit2xノードからすると有効な二つのチェーンがある状態になる。
+coreチェーンが長い状態から flag1チェーンが長くなった場合に、flag1チェーンがメインチェーンに格上げされ、coreチェーン上の取引が無かったことになるリスクがある。
+また、チェーンが並立している状況だと、どちらのチェーンもリプレイ攻撃を受けるリスクがある。</p>
+<p>ブロックの流通が十分で、かつ Segwit2x ノードのハッシュレートが多ければ、coreチェーンよりも flag1 チェーンの方が長くなるので再構成は発生しないですむ。
+一応 Segwit2x が有効になるのは 80% が条件なので、彼らがそのまま Segwit2x を有効にし続ければこのような状況になるだろう。
+もし Segwit2x 側のシグナルが偽装の場合、flag1 チェーンと core チェーンの再構成が起きる状態になる。UASF が起きてもハッシュレートバランスは変わるが、やはり圧倒的な差が付かない場合は常に再構成が起きうる状態になる。</p>
+<p>また、Segwit2x ノードが少数(ハッシュレートではなくてノード数)で互いに接続されていない場合も別の問題がある。
+非flag1ブロックが長くなると、新たに掘られたflag1ブロックは短いチェーンのものなので非Segwit2xノードは伝搬しない。
+孤立した Segwit2x ノードがどんどん新規ブロックを掘ってもそれは伝搬されず、そのノード固有のチェーンとなる。また別の孤立した Segwit2x ノードは独自のチェーンを延ばす。ハッシュレートは実質的にノード単一のものになるので、次の難易度調整までブロックがほとんど掘られない状態になるだろう。</p>
+<h2 id="uahf">UAHF</h2>
+<p>BitcoinCash は segwit が有効無効どちらにせよ core のブロックと互換性が無い。
+再構成の可能性は無く、完全に別のブロックチェーンとして扱える。</p>
+<p>オプションでのリプレイ攻撃対策は用意されている。
+UAHF チェーンのみで有効なトランザクション(SIGHASH_FORKID)を作る方法と、UAHFチェーンで無効なトランザクション(OP_RETURN に特定文字列を入れる)方法の二通り。
+※非segwitな通常のcoreトランザクションはUAHFでも有効なのかな？ だったらリプレイされちゃいそうだ。</p>
+<p>なお、分岐前に存在していた UTXO は、分岐後も有効である。
+ユーザーから見ると、分岐前の BTC と同額の BCC を保有した状態になる。</p>
+                
+                  
+                
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../swagger-codegen-typescript-koa2/" title="swagger-codegen-typescript-koa2" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  前
+                </span>
+                swagger-codegen-typescript-koa2
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../../posts/2020-04-09---blog-setup/" title="ブログ構築" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  次
+                </span>
+                ブログ構築
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.c33a9706.js"></script>
+      
+        
+        
+          
+          <script src="../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+                <script src="../../assets/javascripts/lunr/tinyseg.js"></script>
+              
+              
+                <script src="../../assets/javascripts/lunr/lunr.ja.js"></script>
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+    
+  </body>
+</html>

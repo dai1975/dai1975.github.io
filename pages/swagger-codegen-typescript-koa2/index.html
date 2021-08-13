@@ -1,0 +1,763 @@
+
+
+
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Swagger から TypeScript Koa2 のサーバースケルトンコードを作成するツールを作ったので紹介。">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="クリップボードへコピー">
+      
+        <meta name="lang:clipboard.copied" content="コピーしました">
+      
+        <meta name="lang:search.language" content="ja">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="何も見つかりませんでした">
+      
+        <meta name="lang:search.result.one" content="1件見つかりました">
+      
+        <meta name="lang:search.result.other" content="#件見つかりました">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-　、。，．]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.3">
+    
+    
+      
+        <title>swagger-codegen-typescript-koa2</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.adb8469c.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.a8b3c06d.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#ef5350">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.86422ebf.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="red" data-md-color-accent="">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#_1" tabindex="0" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../.." title="dai's blog" aria-label="dai's blog" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              dai's blog
+            </span>
+            <span class="md-header-nav__topic">
+              
+                swagger-codegen-typescript-koa2
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" aria-label="search" name="query" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            検索キーワードを入力してください
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../.." title="dai's blog" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    dai's blog
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Welcome to MkDocs" class="md-nav__link">
+      Welcome to MkDocs
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Pages
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Pages
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../bech32/" title="Bech32 チェックサムのアルゴリズム" class="md-nav__link">
+      Bech32 チェックサムのアルゴリズム
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../bip32/" title="BIP32 鍵派生アルゴリズム" class="md-nav__link">
+      BIP32 鍵派生アルゴリズム
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../gg18/" title="Fast Multiparty Threshold ECDSA with Fast Trustless Setup" class="md-nav__link">
+      Fast Multiparty Threshold ECDSA with Fast Trustless Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../k8s-template/" title="Kubernetes マニフェストジェネレータ" class="md-nav__link">
+      Kubernetes マニフェストジェネレータ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../microk8s-for-programmer/" title="サーバープログラマのための microk8s のすすめ" class="md-nav__link">
+      サーバープログラマのための microk8s のすすめ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../p2sh/" title="P2SH まとめ" class="md-nav__link">
+      P2SH まとめ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../remote-uk/" title="海外企業(日本法人無し)リモート勤務する場合の税金とか社保とか" class="md-nav__link">
+      海外企業(日本法人無し)リモート勤務する場合の税金とか社保とか
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../rust-netlibs/" title="Rust のネットワークライブラリ/フレームワーク" class="md-nav__link">
+      Rust のネットワークライブラリ/フレームワーク
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../stumpwm/" title="window manager を Stumpwm へ移行" class="md-nav__link">
+      window manager を Stumpwm へ移行
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+    <a href="./" title="swagger-codegen-typescript-koa2" class="md-nav__link md-nav__link--active">
+      swagger-codegen-typescript-koa2
+    </a>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../uasf/" title="Bitcoin の segwit fork のまとめ" class="md-nav__link">
+      Bitcoin の segwit fork のまとめ
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Posts
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Posts
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../posts/2020-04-09---blog-setup/" title="ブログ構築" class="md-nav__link">
+      ブログ構築
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../posts/2020-04-11---unreal_engine/" title="UE4 C++ (VSCode) セットアップ" class="md-nav__link">
+      UE4 C++ (VSCode) セットアップ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../posts/2021-08-13---upgrade-gatsby/" title="gatsby から mkdocs へ移行" class="md-nav__link">
+      gatsby から mkdocs へ移行
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="_1">はじめに</h1>
+<ul>
+<li>swagger からサーバーコードを生成したい</li>
+<li>TypeScript 用</li>
+<li>ルーティングは生成コードでやってほしい。プログラマはマナーにそって関数を定義するだけにしたい。</li>
+<li>HTTP の入出力チェックをしてほしい</li>
+<li>TypeScript なので、きちんと入出力の型を定義してほしい。
+   ついでに実装関数はその型を扱う形にしてほしい。</li>
+</ul>
+<p>というものが欲しかったのですが、探しても見つからないので作りました。</p>
+<h1 id="_2">使い方</h1>
+<h2 id="_3">インストール</h2>
+<pre><code>$ npm install --save swagger-codegen-typescript-koa2
+</code></pre>
+<h2 id="edit-swagger">edit swagger</h2>
+<p>swagger を書きます。バージョンは 2 です。</p>
+<pre><code>swagger: '2.0'
+info:
+  version: '1.0.0'
+  title: swagger test
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /hello/{user_id}:
+    get:
+      summary: get user
+      operationId: get_user
+      description: |
+        get user
+      parameters:
+        - in: path
+          required: true
+          name: user_id
+          type: integer
+          description: user_id
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              user_id:
+                type: integer
+              hello:
+                type: string
+        '400':
+          description: Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+definitions:
+  ErrorResponse:
+    type: object
+    required:
+      - code
+      - name
+      - message
+    properties:
+      code:
+        type: integer
+      name:
+        type: string
+      message:
+        type: string
+</code></pre>
+<h2 id="dtsgenerator">dtsgenerator</h2>
+<p>今は definition などの型は生成しないので、dtsgenerator 使います。
+2.0 は出力形式が変わったようですが未対応です。1.2 を使います。</p>
+<p>-n は空文字、出力ファイル名は swagger.d.ts です。</p>
+<pre><code class="language-console">$ npx dtsgenerator@1.2.0 -n &quot;&quot; -o swagger.d.ts &lt; swagger.yaml
+</code></pre>
+<h2 id="run-codegen">run codegen</h2>
+<p>次に swagger-codegen-typescript-koa2.<br />
+コマンドは、第一引数に swagger ファイル、第二引数に出力ファイルです。</p>
+<pre><code class="language-console">$ npx swagger-codegen-typescript-koa2 swagger.yaml dist/swagger/codegen.ts
+
+</code></pre>
+<p>codegen.ts が作られたのでちょっと見てみます:</p>
+<h3 id="operationid-namespace">operationId -&gt; namespace</h3>
+<pre><code class="language-TypeScript">export namespace get_user {
+</code></pre>
+<p>operationId の名前空間が作られます。</p>
+<h3 id="type-reqeust">type Reqeust</h3>
+<pre><code class="language-TypeScript">  export type Request = {
+    user_id: number;
+  }
+</code></pre>
+<p>parameters の内容に対応した型 Request が作られます。
+API 呼び出しのパラメータは in:body も in:path も validation されてこの型のインスタンスに入れられます。</p>
+<p>type:string, format:date とかは string で来ます。
+そのうち Date で来るようにしたいです。</p>
+<h3 id="response">Response</h3>
+<pre><code class="language-TypeScript">  export type Response200 = {
+user_id?: string
+hello?: string
+};
+  export type Response400 = {
+error_code?: number
+};
+  export type Response = {
+    status: number;
+    body: Response200 | Response400;
+  };
+</code></pre>
+<p>responses の応答ステータス毎に ResponseXXX な型が定義されます。</p>
+<p>さらに、それらを合成した型を body に持つ Response 型が作られます。</p>
+<h3 id="handler">Handler</h3>
+<pre><code class="language-TypeScript">  export interface Handler {
+    (req:Request, ctx:KoaRouter.IRouterContext): Promise&lt;Response&gt;;
+  };
+</code></pre>
+<p>上で見た Request を受けつけ Response を返す関数型が定義されます。
+プログラマはこの関数を実装します。</p>
+<h3 id="router">Router</h3>
+<pre><code class="language-TypeScript">export interface Routes {
+  get_user?: get_user.Handler;
+}
+export class Router extends KoaRouter {
+  swagger: Routes = {};
+}
+
+export function setup(app:Koa, swagger_filepath:string, routes_dirpath:string): Router {
+  ...
+}
+</code></pre>
+<p>セットアップ用の関数と型です。
+あとで見ます。</p>
+<h2 id="_4">実装</h2>
+<p>まず必要なライブラリのインストール</p>
+<pre><code class="language-console">$ npm install --save koa koa-router koa-cors koa-bodyparser swagger2-koa bignumber
+$ npm install --save-dev ts-node @types/koa-cors @types/koa-router
+</code></pre>
+<p>サーバーを書きます。</p>
+<pre><code class="language-console">$ cat index.ts
+</code></pre>
+<h3 id="import">import</h3>
+<p>```TypeScript:index.ts
+import * as Koa from 'koa';
+import * as bodyParser from 'koa-bodyparser';
+import * as koaCors from 'koa-cors';
+import * as koaRouter from 'koa-router';
+import * as api from './codegen';</p>
+<pre><code>
+さっき生成した codegen.ts を import します。
+
+
+### Handler
+
+上で見た Handler 関数を実装します。
+function 文ではなく、arrow で定義した関数を変数に入れる形にすると入出力の型を補完してくれます。
+
+```TypeScript:index.ts
+const get_user:api.get_user.Handler = async (req, ctx) =&gt; {
+    let res200: api.get_user.Response200 | undefined;
+    let res400: api.get_user.Response400 | undefined;
+
+    if (req.user_id === 20070830) {
+        res200 = { user_id: req.user_id, hello: 'hello Miku' }
+    } else if (req.user_id === 20071227) {
+        res200 = { user_id: req.user_id, hello: 'hello Rin' }
+    } else {
+        res400 = { code: 404, name:'not found', message: 'not found' };
+        return { status:400, body:res400! };
+    }
+    return { status:200, body:res200! };
+}
+</code></pre>
+<h3 id="koa">Koa 構築とハンドラ登録</h3>
+<p>```TypeScript:index.ts
+function main() {
+    const app = new Koa();
+    app.use(koaCors());
+    app.use(bodyParser());</p>
+<pre><code>const router = api.setup(app, './swagger.yaml', '');
+router.swagger.get_user = get_user;
+
+app.listen(3000, () =&gt; { console.log('listen on 3000')});
+</code></pre>
+<p>}</p>
+<pre><code>
+api.setup は上で見た、自動生成コードのセットアップ関数です。  
+第一引数に Koa インスタンス、第二引数に swagger ファイルを指定します。第三引数は使わないので空文字列で。  
+swagger ファイルを渡してるのがイマイチですが、これは validation を他のライブラリを用いているためです。そのうち codegen の掃き出すコードに入れたいです。
+
+得られた Router オブジェクトの swagger.get_user 変数に先程作った get_user 関数を代入します。  
+要するに swagger.get_user は `GET users/{user_id}` で呼ばれる関数の置き場所です。
+型指定してあるので、api.Handler でないなら tsc で弾かれます。
+
+そして最後に listen.
+
+
+## 起動
+
+```console
+$ ts-node index.ts
+koa deprecated Support for generators will be removed in v3. See the documentation for examples of how to convert old middleware https://github.com/koajs/koa/blob/master/docs/migration.md index.ts:24:9
+listen on 3000
+</code></pre>
+<pre><code class="language-console">$ curl 'http://localhost:3000/hello/20070830'; echo
+{&quot;user_id&quot;:20070830,&quot;hello&quot;:&quot;hello Miku&quot;}
+
+$ curl 'http://localhost:3000/hello/20071227'; echo
+{&quot;user_id&quot;:20071227,&quot;hello&quot;:&quot;hello Rin&quot;}
+
+$ curl 'http://localhost:3000/hello/20060217'; echo
+{&quot;code&quot;:404,&quot;name&quot;:&quot;not found&quot;,&quot;message&quot;:&quot;not found&quot;}
+</code></pre>
+<p>user_id は integer でした。型エラーにすると...</p>
+<pre><code class="language-console">$ curl 'http://localhost:3000/hello/rin'; echo
+{&quot;code&quot;:&quot;SWAGGER_REQUEST_VALIDATION_FAILED&quot;,&quot;errors&quot;:[{&quot;actual&quot;:&quot;rin&quot;,&quot;expected&quot;:{&quot;type&quot;:&quot;integer&quot;},&quot;where&quot;:&quot;path&quot;}]}
+</code></pre>
+<p>とエラーになります。</p>
+<h1 id="_5">まとめ</h1>
+<p>swagger2 から TypeScript 用のサーバー用のスタブコードを生成するツール作りました。
+ad-hoc な作りですが、とりあえず使えると思います。</p>
+<p>swagger driven な開発で、TypeScript でサーバー書く機会がありましたら使ってみてください。</p>
+<h2 id="urls">URLs</h2>
+<ul>
+<li>npm
+  https://www.npmjs.com/package/swagger-codegen-typescript-koa2</li>
+<li>github<br />
+  https://github.com/dai1975/swagger-codegen-typescript-koa2</li>
+</ul>
+                
+                  
+                
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../stumpwm/" title="window manager を Stumpwm へ移行" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  前
+                </span>
+                window manager を Stumpwm へ移行
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../uasf/" title="Bitcoin の segwit fork のまとめ" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  次
+                </span>
+                Bitcoin の segwit fork のまとめ
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.c33a9706.js"></script>
+      
+        
+        
+          
+          <script src="../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+                <script src="../../assets/javascripts/lunr/tinyseg.js"></script>
+              
+              
+                <script src="../../assets/javascripts/lunr/lunr.ja.js"></script>
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+    
+  </body>
+</html>
