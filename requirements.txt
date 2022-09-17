@@ -1,4 +1,4 @@
 mkdocs
-#mkdocs-material
-mkdocs-bootstrap
+mkdocs-material
+#mkdocs-bootstrap
 markdown-katex
