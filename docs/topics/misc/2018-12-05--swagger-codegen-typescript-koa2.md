@@ -10,6 +10,8 @@ tags:
 description: Swagger から TypeScript Koa2 のサーバースケルトンコードを作成するツールを作ったので紹介。
 #socialImage: "/media/42-line-bible.jpg"
 ---
+2018-12-05
+
 # はじめに
 
  - swagger からサーバーコードを生成したい

@@ -11,6 +11,8 @@ tags:
 description: Rust のネットワークライブラリ/フレームワークを調査してまとめた。
 #socialImage: "/media/42-line-bible.jpg"
 ---
+2016-10-15
+
 # 注意
 2016年秋ごろの調査なので最新状況は違ってます
 
